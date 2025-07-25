@@ -1,4 +1,3 @@
-
 # TODO: import your module
 import requests
 import os
