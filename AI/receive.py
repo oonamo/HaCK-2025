@@ -1,4 +1,3 @@
-
 # TODO: import your module
 import requests
 import os
@@ -8,7 +7,9 @@ import sys
 script_dir = os.path.dirname(os.path.abspath(__file__))
 filename = os.path.join(script_dir, "downloaded_image.jpg")
 
-url = "http://172.20.10.6/1024x768.jpg"             # You will have to change the IP Address
+IP = "172.20.10.6"
+
+url = f"http://{IP}/1024x768.jpg"             # You will have to change the IP Address
 
 # Function to download the image from esp32, given to you
 def download_image():
