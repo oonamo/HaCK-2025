@@ -20,6 +20,8 @@ export default function LCD() {
 
     setHistory((prev) => [...prev, newHistory])
 
+    socket.emit("display", message)
+
     setMessage("")
   }
 
