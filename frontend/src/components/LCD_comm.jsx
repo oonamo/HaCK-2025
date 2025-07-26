@@ -43,7 +43,7 @@ export default function LCD() {
         }
       </div>
       <div className="lcd-chat">
-        <input value={message} onChange={(e) => setMessage(e.target.value)} />
+        <input value={message} onChange={(e) => setMessage(e.target.value)} onKeyPress={(e) => e.key == "Enter" && sendMessage()} />
         <button className="lcd-text-btn" onClick={sendMessage}>Send</button>
       </div>
     </div>
