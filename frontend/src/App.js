@@ -2,13 +2,18 @@ import React, { useState, useEffect } from "react";
 import io from 'socket.io-client';
 import './App.css';
 
-const socket = io('http://localhost:8000');
+import socket from './socket'
+
+import ConnectionStatus from './components/connect_status';
+import LCD from './components/LCD_comm';
+
+import SensorPanel from './components/sensors/sensor_panel'
 
 function App() {
   const [pictureStatus, setPictureStatus] = useState("");
 
   useEffect(() => {
-    socket.on('connect', () => console.log('Connected:', socket.id));
+    // socket.on('connect', () => console.log('Connected:', socket.id));
     socket.on('picture_taken', data => {
       setPictureStatus(data.message);
       setTimeout(() => setPictureStatus(""), 3000); // Clear status after 3 seconds
@@ -19,9 +24,15 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      <p>Write your code here!</p>
-    </div>
+    <>
+      <div className="app">
+        <div className="info-bar">
+          <ConnectionStatus />
+        </div>
+        <SensorPanel />
+        <LCD />
+      </div>
+    </>
   );
 }
 

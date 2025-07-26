@@ -1,0 +1,30 @@
+.sensor-ctn {
+  flex: 1;
+  border: 1px solid var(--color-panel-shadow);
+  border-radius: 8px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+}
+
+.sensor-name {
+  padding: 8px;
+  font-weight: bold;
+  background-color: var(--color-panel-shadow);
+  color: var(--color-text);
+  text-transform: uppercase;
+  text-align:  center;
+  /* border-bottom: 1px solid #ddd; */
+  border-bottom: 4px solid var(--color-panel-shadow);
+}
+
+.sensor-content {
+  background-color: var(--color-panel);
+  height: 200px;
+}
+
+.sensor-time {
+  color: var(--color-timestamp);
+  margin-right: 5px;
+}

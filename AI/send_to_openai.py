@@ -22,7 +22,6 @@ def encode_image(image_path):
 # For later: https://platform.openai.com/docs/guides/images-vision?api-mode=responses&format=base64-encoded
 def request_image(request: str):
     response = client.responses.create(model="gpt-4.1", input="Say something cool!")
-
     return response.output_text
 
 
