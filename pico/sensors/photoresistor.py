@@ -8,7 +8,8 @@ RESISTOR_VAL = 1000
 
 ADC_MAX = 65535
 LUMEN_CONVERSION = 0.75  # Ohms/ Lumen
-
+SLOPE = (56973 - 240) / (0.98)
+Y_INTERCEPT = 240  # ADC value at 0 lumens
 
 def adc_to_ohms(adc_val):
     ohms = (RESISTOR_VAL * (ADC_MAX - adc_val)) / adc_val
@@ -34,4 +35,9 @@ def read_photoresistor_value():
 
 def read_pr_lumens():
     adc = read_photoresistor_value()
-    return ohms_to_lux(adc_to_ohms(adc))
+    return (adc - Y_INTERCEPT) / (SLOPE)
+
+while True:
+    lumens = read_pr_lumens()
+    print(f"ADC: {read_photoresistor_value()} | Lumens: {lumens:.3f}")
+    time.sleep(1)
