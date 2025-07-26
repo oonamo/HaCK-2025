@@ -4,6 +4,7 @@ import socket from '../socket'
 export default function GPT() {
   const [hasPicture, setHasPicture] = useState(false)
   const [tts, setTTS] = useState(null)
+  const [image, setImage] = useState(null)
 
   function playAudio() {
     const audio = new Audio(tts)
@@ -22,6 +23,7 @@ export default function GPT() {
       if (data.success) {
         setHasPicture(true)
         setTTS(require("../tts.wav"))
+        setImage(require("../downloaded_image.jpg"))
       }
     })
   }, [])
@@ -33,6 +35,7 @@ export default function GPT() {
   return (
     <div>
       <button onClick={onClick}>GPT DO THING</button>
+      {hasPicture && <img src={image} />}
     </div>
   )
 }
