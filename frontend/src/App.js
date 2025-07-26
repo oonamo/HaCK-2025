@@ -13,7 +13,6 @@ function App() {
       setPictureStatus(data.message);
       setTimeout(() => setPictureStatus(""), 3000); // Clear status after 3 seconds
     });
-    socket.on("")
     return () => {
       socket.off('picture_taken');
     };
