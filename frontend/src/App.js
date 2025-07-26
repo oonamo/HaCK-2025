@@ -9,6 +9,8 @@ import LCD from './components/LCD_comm';
 
 import SensorPanel from './components/sensors/sensor_panel'
 
+import GPT from './components/gpt';
+
 function App() {
   const [pictureStatus, setPictureStatus] = useState("");
 
@@ -31,6 +33,7 @@ function App() {
         </div>
         <SensorPanel />
         <LCD />
+        <GPT />
       </div>
     </>
   );

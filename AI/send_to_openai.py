@@ -8,7 +8,8 @@ os.environ["OPENAI_API_KEY"] = secrets.OPENAPI_KEY
 
 client = OpenAI()
 PROMPT = """
-Please show me a cool image!
+You are an agent tasked with a secret mission. You must find any important information in the following image
+and use it to beat challenges. Respond in 60 words or less. Efficency is important, make sure to keep things understandable, yet brief.
 """
 
 
@@ -18,6 +19,26 @@ def encode_image(image_path):
         return base64.b64encode(image_F.read()).decode("utf-8")
 
 
+def ask_gpt_for_description(image_path):
+    img_bytes = encode_image(image_path)
+    response = client.responses.create(
+        model="gpt-4.1",
+        input=[
+            {
+                "role": "user",
+                "content": [
+                    {"type": "input_text", "text": PROMPT},
+                    {
+                        "type": "input_image",
+                        "image_url": f"data:image/jpeg;base64,{img_bytes}",
+                    },
+                ],
+            }
+        ],
+    )
+    return response.output_text
+
+
 # TODO: Sending a request and getting a response
 # For later: https://platform.openai.com/docs/guides/images-vision?api-mode=responses&format=base64-encoded
 def request_image(request: str):
@@ -25,23 +46,15 @@ def request_image(request: str):
     return response.output_text
 
 
-# TODO: How do we make things audible?
-def request_audio(text: str):
-    completion = client.chat.completions.create(
-        model="gpt-4o-audio-preview",
-        modalities=["text", "audio"],
-        audio={"voice": "alloy", "format": "wav"},
-        messages=[{"role": "user", "content": text}],
-    )
-    return completion.choices[0].message
+def write_text(text, path):
+    with open(path, "w") as f:
+        f.write(text)
 
 
-def write_audio(completion):
-    wav_bytes = base64.b64decode(completion.audio.data)
-    with open("dog.wav", "wb") as f:
-        f.write(wav_bytes)
-
-
-# write_audio(request_audio(request_image("")))
-
-# TODO: Can we put everything together?
+def request_audio(text: str, path):
+    with client.audio.speech.with_streaming_response.create(
+        model="gpt-4o-mini-tts",
+        voice="coral",
+        input=text,
+    ) as response:
+        response.stream_to_file(path)

@@ -31,19 +31,19 @@ const client = MQTT.connect(process.env.CONNECT_URL, {
 
 // Used for debugging 
 
-client.on("error", function (error) {
+client.on("error", function(error) {
   console.error("Connection error: ", error);
 });
 
-client.on("close", function () {
+client.on("close", function() {
   console.log("Connection closed");
 });
 
-client.on("offline", function () {
+client.on("offline", function() {
   console.log("Client went offline");
 });
 
-client.on("reconnect", function () {
+client.on("reconnect", function() {
   console.log("Attempting to reconnect...");
 });
 
@@ -120,9 +120,9 @@ io.on("connection", (socket) => {
   // Handle take picture request
   socket.on('take_picture', () => {
     console.log('📸 Taking picture and getting AI description...');
-    
+
     // Execute the Python script
-    const pythonProcess = spawn('python3', ['../AI/receive.py'], {
+    const pythonProcess = spawn('python', ['../AI/receive.py'], {
       cwd: __dirname
     });
 
@@ -138,6 +138,7 @@ io.on("connection", (socket) => {
       console.log(`Python script finished with code ${code}`);
       if (code === 0) {
         socket.emit('picture_taken', { success: true, message: 'Picture analyzed successfully!' });
+        // spawn("explorer", ["../frontend/src/tts.wav"], { cwd: __dirname })
       } else {
         socket.emit('picture_taken', { success: false, message: 'Failed to analyze picture' });
       }
@@ -163,16 +164,16 @@ server.listen(8000, () => {
 
 client.on('message', (TOPIC, payload) => {
   console.log("Received from broker:", TOPIC, payload.toString());
-  if( TOPIC === 'temp' ) {
+  if (TOPIC === 'temp') {
     latestTemp = payload.toString();
   }
-  else if ( TOPIC === 'ultrasonic' ) {
+  else if (TOPIC === 'ultrasonic') {
     latestUltrasonic = payload.toString();
   }
-  else if ( TOPIC === 'humidity') {
+  else if (TOPIC === 'humidity') {
     latestHumidity = payload.toString();
   }
-  else if ( TOPIC === 'light') {
+  else if (TOPIC === 'light') {
     latestLight = payload.toString();
   }
 });

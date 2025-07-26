@@ -1,5 +1,6 @@
 import dht
 from machine import Pin
+import time
 
 DHT_PIN = 22
 
@@ -25,3 +26,9 @@ def get_humidity():
     except OSError:
         print("Failed to read humidity.")
         return None
+
+
+while True:
+    print("humidity: ", get_humidity())
+    print("temp: ", get_temperature())
+    time.sleep(1)
