@@ -1,0 +1,57 @@
+.lcd-comm {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  padding: 12px;
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 0 6px var(--color-panel-shadow);
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 50%;
+}
+
+.lcd-history {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  border-bottom: 1px solid var(--color-accent);
+  margin-bottom: 8px;
+}
+
+.lcd-time {
+  color: var(--color-timestamp);
+  padding-right: 8px;
+}
+
+
+.lcd-chat {
+  display: flex;
+}
+
+.lcd-chat input {
+  width: 100%;
+  flex: 1;
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-panel-shadow);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+}
+
+.lcd-chat input:focus {
+  border: none;
+  outline: none;
+}
+
+.lcd-text-btn {
+  border: none;
+  font-weight: bold;
+  color: var(--color-bg);
+  background-color: var(--color-accent);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.lcd-text-btn:hover {
+  background-color: var(--color-timestamp)
+}
