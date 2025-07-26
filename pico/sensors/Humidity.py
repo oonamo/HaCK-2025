@@ -9,7 +9,7 @@ sensor = dht.DHT11(Pin(22))
 def get_temperature():
     try:
         sensor.measure()
-        tempF = (sensor.temperature() * (9 / 5)) + 32
+        tempF = (sensor.temperature() * (9 / 5)) + 27
         return tempF
     except OSError as e:
         print('Failed to read temperature.')
