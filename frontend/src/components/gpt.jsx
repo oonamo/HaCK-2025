@@ -40,31 +40,27 @@ export default function GPT() {
   }, [])
 
   function onClick() {
-    // socket.emit("take_picture")
+    socket.emit("take_picture")
     // socket.emit("picture_taken", { "success": true })
-    console.log("click!")
-    setHasPicture(true)
-    setTTS(require("../tts.wav"))
-    setImage(require("../downloaded_image.jpg"))
+    // console.log("click!")
+    // setHasPicture(true)
+    // setTTS(require("../tts.wav"))
+    // setImage(require("../downloaded_image.jpg"))
   }
 
   return (
-    <div>
-      {!hasPicture ? (
-        <div className="gpt-img-ctn">
-          <img src={ChatGPT} className="gpt-img-call" />
-          <button onClick={onClick} className="gpt-call">
-            <FaCamera size={30} />
-          </button>
-        </div>
-      ) :
+    <div className="inline">
+      <button onClick={onClick} className="gpt-call">
+        INVOKE RECIEVE.PY
+      </button>
+      {hasPicture && (
         <div className="gpt-img-ctn">
           <button className="gpt-audio" onClick={playAudio}>
             <FaRedoAlt size={30} />
           </button>
           <img src={image} className="gpt-img" onClick={playAudio} />
         </div>
-      }
+      )}
     </div>
   )
 }

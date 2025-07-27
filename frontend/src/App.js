@@ -32,8 +32,8 @@ function App() {
           <ConnectionStatus />
         </div>
         <SensorPanel />
+        <LCD />
         <div className="gpt-bar">
-          <LCD />
           <GPT />
         </div>
       </div>

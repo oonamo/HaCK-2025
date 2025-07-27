@@ -38,6 +38,9 @@ export default function LCD() {
 
   return (
     <div className="lcd-comm">
+      <div className="lcd-console">
+        <span>Console</span>
+      </div>
       <div className="lcd-history" ref={containerRef}>
         {
           history.map((val, i) =>
