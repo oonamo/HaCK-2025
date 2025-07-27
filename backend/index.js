@@ -31,6 +31,8 @@ const client = MQTT.connect(process.env.CONNECT_URL, {
 
 // Used for debugging 
 
+let currentTemp;
+
 client.on("error", function(error) {
   console.error("Connection error: ", error);
 });
@@ -151,11 +153,28 @@ io.on("connection", (socket) => {
 
 });
 
+let tempPending
+let usPending
+let humidityPending
+let lightPending
+
 setInterval(() => {
-  io.emit('temp', latestTemp);
-  io.emit('ultrasonic', latestUltrasonic);
-  io.emit('humidity', latestHumidity);
-  io.emit('light', latestLight)
+  if (tempPending) {
+    io.emit('temp', latestTemp);
+    tempPending = false
+  }
+  if (usPending) {
+    io.emit('ultrasonic', latestUltrasonic);
+    usPending = false
+  }
+  if(humidityPending) {
+    io.emit('humidity', latestHumidity);
+    humidityPending = false
+  }
+  if (lightPending) {
+    io.emit("light", latestLight)
+    lightPending = false
+  }
 }, 1000);
 
 server.listen(8000, () => {
@@ -166,15 +185,19 @@ client.on('message', (TOPIC, payload) => {
   console.log("Received from broker:", TOPIC, payload.toString());
   if (TOPIC === 'temp') {
     latestTemp = payload.toString();
+    tempPending = true
   }
   else if (TOPIC === 'ultrasonic') {
     latestUltrasonic = payload.toString();
+    usPending = true
   }
   else if (TOPIC === 'humidity') {
     latestHumidity = payload.toString();
+    humidityPending = true
   }
   else if (TOPIC === 'light') {
     latestLight = payload.toString();
+    lightPending = true
   }
 });
 

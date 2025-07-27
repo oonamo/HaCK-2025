@@ -2,13 +2,14 @@
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-mono);
-  padding: 12px;
+  /* padding: 12px; */
   border: 1px solid var(--color-accent);
   box-shadow: 0 0 6px var(--color-panel-shadow);
   display: flex;
   flex-direction: column;
-  height: 300px;
-  width: 50%;
+  /* height: 300px; */
+  /* height: 300px; */
+  width: 100%;
 }
 
 .lcd-history {
@@ -24,13 +25,13 @@
   padding-right: 8px;
 }
 
-
 .lcd-chat {
   display: flex;
+  /* width: 50; */
 }
 
 .lcd-chat input {
-  width: 100%;
+  /* width: 100%; */
   flex: 1;
   background-color: var(--color-panel);
   border: 1px solid var(--color-panel-shadow);

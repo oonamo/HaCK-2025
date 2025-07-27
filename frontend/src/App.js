@@ -32,8 +32,10 @@ function App() {
           <ConnectionStatus />
         </div>
         <SensorPanel />
-        <LCD />
-        <GPT />
+        <div className="gpt-bar">
+          <LCD />
+          <GPT />
+        </div>
       </div>
     </>
   );

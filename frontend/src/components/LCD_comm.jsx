@@ -1,12 +1,13 @@
 import socket from '../socket';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import './lcd.css'
 
 export default function LCD() {
   const [message, setMessage] = useState("")
   const [history, setHistory] = useState([])
+  const containerRef = useRef(null)
 
   function sendMessage() {
     if (message.length <= 0) return;
@@ -27,11 +28,17 @@ export default function LCD() {
 
   useEffect(() => {
     console.log("Updated history:", history);
+
+    const container = containerRef.current
+
+    if (container) {
+      container.scrollTop = container.scrollHeight
+    }
   }, [history]);
 
   return (
     <div className="lcd-comm">
-      <div className="lcd-history">
+      <div className="lcd-history" ref={containerRef}>
         {
           history.map((val, i) =>
           (
