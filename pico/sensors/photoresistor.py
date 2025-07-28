@@ -37,7 +37,7 @@ def read_pr_lumens():
     adc = read_photoresistor_value()
     return (adc - Y_INTERCEPT) / (SLOPE)
 
-while True:
-    lumens = read_pr_lumens()
-    print(f"ADC: {read_photoresistor_value()} | Lumens: {lumens:.3f}")
-    time.sleep(1)
+# while True:
+#     lumens = read_pr_lumens()
+#     print(f"ADC: {read_photoresistor_value()} | Lumens: {lumens:.3f}")
+#     time.sleep(1)

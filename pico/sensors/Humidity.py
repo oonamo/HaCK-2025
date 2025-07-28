@@ -28,7 +28,7 @@ def get_humidity():
         return None
 
 
-while True:
-    print("humidity: ", get_humidity())
-    print("temp: ", get_temperature())
-    time.sleep(1)
+# while True:
+#     print("humidity: ", get_humidity())
+#     print("temp: ", get_temperature())
+#     time.sleep(1)

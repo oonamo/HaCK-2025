@@ -1,4 +1,5 @@
-from lib.hcsr04 import HCSR04
+from mod.hcsr04 import HCSR04
+import time
 
 TRIGGER_PIN = 20
 ECHO_PIN = 21
@@ -10,3 +11,7 @@ def get_distance_cm():
         return sensor.distance_cm()
     except OSError:
         return None
+
+# while True:
+#     print(get_distance_cm())
+#     time.sleep(0.5)

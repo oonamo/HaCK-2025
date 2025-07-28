@@ -10,6 +10,7 @@ client = OpenAI()
 PROMPT = """
 You are an agent tasked with a secret mission. You must find any important information in the following image
 and use it to beat challenges. Respond in 60 words or less. Efficency is important, make sure to keep things understandable, yet brief.
+Describe the image in great details. I.e., images of plants should include their species. Be both quantitative and qualitative.
 """
 
 

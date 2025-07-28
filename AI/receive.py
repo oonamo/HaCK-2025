@@ -9,9 +9,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 frontend = os.path.join(script_dir, "../frontend/src/")
 filename = os.path.join(frontend, "downloaded_image.jpg")
 
-IP = "192.168.50.85"
-
-# http://192.168.50.85
+IP = "YOUR IP"
 
 url = f"http://{IP}/1024x768.jpg"  # You will have to change the IP Address
 

@@ -11,5 +11,6 @@ class SensorPublisher:
         self._fn = fn
 
     def publish(self, *args):
+        print("publish:", self._name)
         payload = self._fn(*args)
-        self._client.publish(self._topic, payload)
+        self._client.publish(self._name, str(payload))

@@ -4,8 +4,8 @@ from time import sleep
 from connections import connect_internet, connect_mqtt
 from publisher import PUBLISHERS
 
-WIFI_SSID = "UCLA_WEB"
-WIFI_PASSWORD = None
+WIFI_SSID = secrets.WIFI_SSID
+WIFI_PASSWORD = secrets.WIFI_PASSWORD
 
 
 def cb(topic, msg):
@@ -16,7 +16,7 @@ def main():
     try:
         connect_internet(WIFI_SSID, password=WIFI_PASSWORD)  # ssid (wifi name), pass
         client = connect_mqtt(
-            secrets.MQTT_URL, secrets.USER, secrets.MQTT_PASS
+            secrets.MQTT_URL, secrets.MQTT_USER, secrets.MQTT_PASS
         )  # url, user, pass
 
         client.set_callback(cb)
@@ -27,7 +27,7 @@ def main():
             if True:
                 PUBLISHERS.publish_all()
             # client.check_msg()
-            sleep(0.1)
+            sleep(1)
 
     except KeyboardInterrupt:
         print("keyboard interrupt")

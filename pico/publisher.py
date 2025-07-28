@@ -1,6 +1,6 @@
 from sensors import Humidity, photoresistor, ultrasonic
 
-from pico.service import SensorPublisher
+from service import SensorPublisher
 
 
 def request_humidty() -> (float, None):
@@ -49,14 +49,16 @@ class Publishers:
                 self._client, topic, self._topics[topic]
             )
 
-        self._init_client = True
+        self._client_init = True
 
     def publish(self, topic, *args):
         if not self._client_init:
             self._init_client()
 
         if self._publishers[topic]:
+            print("trying publish")
             self._publishers[topic].publish(*args)
+            print("did publish")
 
     def publish_all(self):
         for topic in self._topics:
@@ -68,7 +70,7 @@ class Publishers:
 
 PUBLISHERS = Publishers(
     client=None,
-    defer_client=False,
+    defer_client=True,
     topics={
         "temp": request_tempature,
         "humidity": request_humidty,
