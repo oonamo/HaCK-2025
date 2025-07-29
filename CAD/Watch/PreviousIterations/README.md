@@ -1,1 +1,1 @@
-this folder contains previous iterations of the watch
+this folder contains previous iterations CAD files for the watch
